@@ -1,0 +1,123 @@
+/* //import React, { useState } from "react";
+import { View, TextInput, Text, StyleSheet } from "react-native";
+
+const App = () => {
+  const [text, setText] = useState(""); // State to store input value
+
+  return (
+    <View style={styles.container}>
+      <Text>Enter your name:</Text>
+      <TextInput
+        style={styles.input}
+        placeholder="Type here..."
+        value={text}
+        onChangeText={setText} // Updates state on text change
+      />
+      <Text>You entered: {text}</Text>
+    </View>
+  );
+};
+
+const styles = StyleSheet.create({
+  container: { flex: 1, justifyContent: "center", alignItems: "center" },
+  input: { borderWidth: 1, padding: 10, width: "80%", marginTop: 10 },
+});
+
+export default App; */1
+
+import React, { useState } from 'react';
+import { Button, StyleSheet, Text, TextInput, View } from 'react-native';
+
+const App = () => {
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [display, setDisplay] = useState(false);
+
+  // Function to clear input fields
+  const handleClear = () => {
+    setName("");
+    setEmail("");
+    setPassword("");
+    setDisplay(false); // Hide details after clearing
+  };
+
+  return (
+    <View style={styles.container}>
+      <Text style={styles.title}>Simple Form</Text>
+
+      <TextInput
+        style={styles.input}
+        placeholder="Enter User Name"
+        onChangeText={setName}
+        value={name}
+      />
+
+      <TextInput
+        style={styles.input}
+        placeholder="Enter Email ID"
+        onChangeText={setEmail}
+        value={email}
+      />
+
+      <TextInput
+        style={styles.input}
+        placeholder="Enter Password"
+        secureTextEntry={true}
+        onChangeText={setPassword}
+        value={password}
+      />
+
+      <View style={styles.buttonContainer}>
+        {/* Print Button */}
+        <Button title="Print Details" onPress={() => setDisplay(true)} />
+
+        {/* Clear Button */}
+        <Button title="Clear Details" onPress={handleClear} />
+      </View>
+
+      {/* Display Details when 'Print Details' is clicked */}
+      {display && (
+        <View style={styles.resultContainer}>
+          <Text>User Name: {name}</Text>
+          <Text>User Email: {email}</Text>
+          <Text>User Password: {password}</Text>
+        </View>
+      )}
+    </View>
+  );
+};
+
+export default App;
+
+const styles = StyleSheet.create({
+  container: { 
+    flex: 1,
+    justifyContent: "center",
+    alignItems: "center",
+    padding: 20,
+  },
+  title: {
+    fontSize: 20,
+    fontWeight: "bold",
+    marginBottom: 20,
+  },
+  input: {
+    width: "100%",
+    borderWidth: 1,
+    padding: 10,
+    marginBottom: 10,
+    borderRadius: 5,
+  },
+  buttonContainer: {
+    marginTop: 10,
+    width: "100%",
+    gap: 10,
+  },
+  resultContainer: {
+    marginTop: 20,
+    padding: 10,
+    borderWidth: 1,
+    borderRadius: 5,
+  },
+});
